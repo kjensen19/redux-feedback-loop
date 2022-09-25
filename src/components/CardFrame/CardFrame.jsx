@@ -9,6 +9,7 @@ import { Paper } from '@mui/material';
 import RatingScale from '../RatingScale/RatingScale';
 import AccordDrawer from '../AccordDrawer/AccordDrawer';
 import { useSelector } from 'react-redux';
+import ReviewCard from '../ReviewCard/ReviewCard';
 
 
 //TODO Add on click to collect rating (currentQuestion + rating to store object)
@@ -21,27 +22,45 @@ import { useSelector } from 'react-redux';
   const currentQuestion = useSelector(store => store.currentQuestion)
   const questions = useSelector(store => store.questionBank)
   console.log(questions)
-  const questionPrompt = questions[currentQuestion][1]
-
-  const card = (
-    <React.Fragment>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Question {currentQuestion} of 4
-        </Typography>
-        <Typography variant="h5" component="div">
-          {questions[currentQuestion][currentQuestion]}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Useless - Excellent+
-        </Typography>
-          <RatingScale currentQuestion={currentQuestion}/>
-      </CardContent>
-      <CardActions>
-      </CardActions>
-      <AccordDrawer />
-    </React.Fragment>
-  );
+  let card =<></>
+  
+  if (currentQuestion < 4){
+    card = (
+      <React.Fragment>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Question {currentQuestion} of 4
+          </Typography>
+          <Typography variant="h5" component="div">
+            {questions[currentQuestion][currentQuestion]}
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary" >
+            Useless - Excellent+
+          </Typography>
+            <RatingScale currentQuestion={currentQuestion} />
+        </CardContent>
+        <CardActions>
+        </CardActions>
+      </React.Fragment>
+    );
+  }
+  else {
+    card = (
+      <React.Fragment>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Question {currentQuestion} of 4
+          </Typography>
+          <Typography variant="h5" component="div">
+            {questions[currentQuestion][currentQuestion]}
+          </Typography>
+        </CardContent>
+        <CardActions>
+        </CardActions>
+        <AccordDrawer  />
+      </React.Fragment>
+    )
+  }
 
   return (
       <Box className="feedbackCard"sx={{ width:.5, height: .5}}>

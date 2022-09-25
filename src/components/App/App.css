@@ -1,7 +1,23 @@
 .App {
   height: 100vh;
+  align-content: center;
+  justify-content: center;
+}
+
+h4{
+  align-self: center;
+  margin-top: 0;
+
 }
 
 .feedbackCard {
   border: 2rem solid black
+}
+
+.App-header {
+  margin: 5rem
+}
+
+.notFinal {
+  visibility: hidden;
 }

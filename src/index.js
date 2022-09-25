@@ -20,7 +20,6 @@ const currentQuestion = (state = 1, action) => {
         case 'ADD_1':
         case 'ADD_2':
         case 'ADD_3':
-        case 'ADD_4':
             return state + 1
         case 'PREVIOUS_PAGE':
             return state - 1
