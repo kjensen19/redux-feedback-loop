@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import MissingAlert from '../MissingAlert/MissingAlert';
 import { useHistory } from 'react-router-dom';
+import Stack from '@mui/material/Stack';
+
 
 const labels = {
   0.5: 'Awful',
@@ -55,6 +57,7 @@ function RatingScale({ currentQuestion }) {
         payload: {value}
       }
       setValue(0)
+      setHover(-1)
       dispatch(action)
     }
     else {
@@ -64,7 +67,7 @@ function RatingScale({ currentQuestion }) {
 
 
   return (
-    <>
+  <>
     <Box
       sx={{
         width: 200,
@@ -72,24 +75,27 @@ function RatingScale({ currentQuestion }) {
         alignItems: 'center',
       }}
     >
-      <Rating
-        name="hover-feedback"
-        value={value}
-        size="large"
-        precision={0.5}
-        getLabelText={getLabelText}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        onChangeActive={(event, newHover) => {
-          setHover(newHover);
-        }}
-        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}
-      />
-      {value !== null && (
-        <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-      )}
-      </Box>
+      <Stack >
+        <Rating
+          name="hover-feedback"
+          value={value}
+          size="large"
+          precision={0.5}
+          getLabelText={getLabelText}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+          emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}
+        />
+        {value !== null && (
+          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+        )}
+      </Stack>
+        </Box>
+
         <Box sx={{ mt: 4}}>
            <Button className="backButton" size="small" variant='outlined' onClick={handleBack} color="inherit" >Go Back</Button>
            <Button size="small" variant='outlined' onClick={handleSubmit} color="inherit">Next Question</Button>

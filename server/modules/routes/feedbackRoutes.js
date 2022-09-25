@@ -42,9 +42,23 @@ router.post('/', (req, res) => {
     const sqlValues = [req.body.feeling, req.body.understanding, req.body.support, req.body.comments]
     pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-        res.sendStatus(200)
+        res.sendStatus(201)
     }).catch((dbErr) => {
         console.log('SS POST FAILED', dbErr)
+        res.sendStatus(500)
+    })
+})
+
+router.get('/', (req, res) => {
+    const sqlText = `
+    SELECT * FROM feedback
+      order by id
+    `
+    pool.query(sqlText)
+    .then((dbRes) => {
+        res.send(dbRes)
+    }).catch((dbErr) => {
+        console.log('Error in get', dbErr)
         res.sendStatus(500)
     })
 })

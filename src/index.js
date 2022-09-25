@@ -23,6 +23,8 @@ const currentQuestion = (state = 1, action) => {
             return state + 1
         case 'PREVIOUS_PAGE':
             return state - 1
+        case 'CLEAR_DATA':
+            return 1
     }
     return state
 }
@@ -31,6 +33,8 @@ const feelingAnswers = (state = [], action) => {
     switch(action.type){
         case 'ADD_1':
             return action.payload
+        case 'CLEAR_DATA':
+            return []
     }
     return state
 }
@@ -39,6 +43,8 @@ const understandingAnswers = (state = [], action) => {
     switch(action.type){
         case 'ADD_2':
             return action.payload
+        case 'CLEAR_DATA':
+            return []
     }
     return state
 }
@@ -47,6 +53,8 @@ const supportAnswers = (state = [], action) => {
     switch(action.type){
         case 'ADD_3':
             return action.payload
+        case 'CLEAR_DATA':
+            return []
     }
     return state
 }
@@ -55,6 +63,8 @@ const commentsAnswers = (state = [], action) => {
     switch(action.type){
         case 'ADD_4':
             return action.payload
+        case 'CLEAR_DATA':
+            return []
     }
     return state
 }

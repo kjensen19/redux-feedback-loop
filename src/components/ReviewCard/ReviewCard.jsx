@@ -11,6 +11,10 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -50,18 +54,45 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+
 
 function ReviewCard() {
-    const dispatch = useDispatch()
-    // const feeling = 
-    const [open, setOpen] = React.useState(false);
+  const history = useHistory()
+  const dispatch = useDispatch()
+  // const feeling = 
+  const [open, setOpen] = React.useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
 
-    const handleClickOpen = () => {
-        console.log(feedbackSession)
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
+
+  const handleClickOpen = () => {
+      console.log(feedbackSession)
+      setOpen(true);
+  };
+  const handleClose = () => {
+      setOpen(false);
+  };
+
+  const handleCloseAlert = (event, reason) => {
+    if (reason === 'clickaway') {
+      const action = {
+        type: 'CLEAR_DATA'
+    }
+      dispatch(action)
+      history.push('/')
+      //setOpenAlert(false);
+      return;
+    }
+      
+      // setOpenAlert(false);
+      const action = {
+        type: 'CLEAR_DATA'
+    }
+      dispatch(action)
+      history.push('/')
     };
 
     //Need to build object from redux store that looks like:
@@ -74,21 +105,26 @@ function ReviewCard() {
     }
 
     //POST route on click
-    const handleSubmit = (event) => {
+    const handleSubmit = () => {
         event.preventDefault(event)
+        setOpenAlert(true);
+        console.log('openAlert = ', openAlert)
         handleClose()
-
         axios({
             method: 'POST',
             url: '/feedback',
             data: feedbackSession
         }).then((response) => {
+            
+            console.log('openAlert=', openAlert)
             console.log('POST complete')
+            
             //need to call clear dispatch
-            const action = {
-                type: 'CLEAR_DATA'
-            }
-            dispatch(action)
+            // const action = {
+            //     type: 'CLEAR_DATA'
+            // }
+            // dispatch(action)
+            setOpenAlert(true)
         }).catch((error) => {
             console.log('CS POST ERROR', error)
         })
@@ -99,7 +135,12 @@ function ReviewCard() {
 
     return(
         <div>
-        <Button variant="outlined" color="inherit" onClick={handleClickOpen}>
+          <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+            <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
+              Upload Success! 
+            </Alert>
+          </Snackbar>
+        <Button variant="outlined" color="inherit" size='large' onClick={handleClickOpen} fullWidth>
             
             Review Answers
         </Button>

@@ -10,9 +10,9 @@ h4{
 
 }
 
-.feedbackCard {
+/* .feedbackCard {
   border: 2rem solid black
-}
+} */
 
 .App-header {
   margin: 5rem
@@ -20,4 +20,8 @@ h4{
 
 .notFinal {
   visibility: hidden;
+}
+
+#bgAll.dark {
+  background-image: radial-gradient(darkgrey, black);
 }

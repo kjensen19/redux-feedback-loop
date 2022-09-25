@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux'
 import ReviewCard from '../ReviewCard/ReviewCard';
+import Stack from '@mui/material/Stack';
 
  function TextInput() {
   const dispatch = useDispatch()
@@ -19,8 +20,10 @@ import ReviewCard from '../ReviewCard/ReviewCard';
       type: 'ADD_4',
       payload: {value}
     }
-    dispatch(action)
     setValue('')
+    dispatch(action)
+
+    
 
 
   }
@@ -29,22 +32,25 @@ import ReviewCard from '../ReviewCard/ReviewCard';
     <Box
         component="form"
         sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        '& .MuiTextField-root': { m: 1, width: 'auto' },
         }}
         noValidate
         autoComplete="off"
     >
+      <Stack >
         <TextField
           id="outlined-textarea"
           label="Comment"
           placeholder="Comment"
           multiline
-          fullWidth
           name={value}
+          value={value}
           onChange={handleChange}
+          color="secondary"
         />
-        <Button onClick={handleSubmit} variant="outlined" color="inherit">Submit</Button>
+        <Button onClick={handleSubmit} size="medium" variant="outlined" color="inherit">Add Comment</Button>
         <ReviewCard />
+      </Stack>
     </Box>
   )
     }

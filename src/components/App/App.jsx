@@ -1,25 +1,15 @@
 import React from 'react';
-import axios from 'axios';
 import './App.css';
 import Header from '../Header/Header';
-import CommentCard from '../CommentsCard/CommentCard';
-import FeelingCard from '../FeelingCard/FeelingCard';
-import ReviewCard from '../ReviewCard/ReviewCard';
-import SupportCard from '../SupportCard/SupportCard';
-import UnderstandingCard from '../UnderstandingCard/UnderstandingCard';
-import RatingScale from '../RatingScale/RatingScale';
-import TextInput from '../TextInput/TextInput';
+import BasicTable from '../Admin/Admin';
 import CardFrame from '../CardFrame/CardFrame';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import { useState } from 'react'
 import { Paper, Box } from '@mui/material';
 import Container from '@mui/material/Container';
-import { useDispatch, useSelector } from 'react-redux';
 import { HashRouter as Router, Route, Link} from 'react-router-dom';
-import Button from '@mui/material/Button';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import ButtonBar from '../ButtonBar/ButtonBar';
+import BasicMenu from '../SpeedDial/SpeedDial';
 
 
 
@@ -30,18 +20,12 @@ function App() {
       mode: `${colorMode}`,
     },
   });
-  function handleClick() {
-    colorMode === 'light' ? setColorMode('dark') : setColorMode('light')
-  }
-
-
+  
   return (
     <ThemeProvider theme={darkTheme}>
-      <Paper elevation={8}>
+      <Paper id="bgAll"  className={colorMode} elevation={8}>
         <Router>
-          <Button onClick={handleClick} variant="outlined"  color='inherit'>
-            {colorMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-          </Button>
+          <BasicMenu colorMode={colorMode} setColorMode={setColorMode}/>
           <Box className='App'
           display="flex"
           justifyContent="center"
@@ -59,21 +43,13 @@ function App() {
             </Container>
           </Route>
           <Route exact path ="/feedback">
-            <CardFrame />
+              <CardFrame />
           </Route>
-          <Route exact path ="/understanding">
-            <CardFrame />
-          </Route>
-          <Route exact path ="/support">
-            <CardFrame />
-          </Route>
-          <Route exact path ="/comments">
-            <CardFrame />
-            <ReviewCard />
+          <Route exact path= "/admin">
+              <BasicTable />
           </Route>
           </Box>
         </Router>
-      
       </Paper>
     </ThemeProvider>
   );

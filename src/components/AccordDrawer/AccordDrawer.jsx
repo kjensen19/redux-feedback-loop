@@ -9,13 +9,13 @@ import TextInput from '../TextInput/TextInput';
 export default function AccordDrawer() {
   return (
     <div>
-      <Accordion>
+      <Accordion >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={< ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Add Comment</Typography>
+          <Typography>Add Comment and Review Answers</Typography>
         </AccordionSummary>
         <AccordionDetails>
             <TextInput />

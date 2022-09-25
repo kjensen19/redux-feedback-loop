@@ -57,13 +57,13 @@ import ReviewCard from '../ReviewCard/ReviewCard';
         </CardContent>
         <CardActions>
         </CardActions>
-        <AccordDrawer  />
+        <AccordDrawer />
       </React.Fragment>
     )
   }
 
   return (
-      <Box className="feedbackCard"sx={{ width:.5, height: .5}}>
+      <Box className="feedbackCard"sx={{ width:.45, height: .7}}>
         <Paper elevation={24}>
           <Card variant="outlined">{card}</Card>
         </Paper>
