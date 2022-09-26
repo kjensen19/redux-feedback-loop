@@ -64,8 +64,57 @@ router.get('/', (req, res) => {
 })
 
 
-//PUT
+//DEL
+router.delete('/:id', (req, res) => {
+    id = req.params.id
+    sqlText = `
+    DELETE FROM feedback
+      WHERE id=$1
+    `
+    sqlValues = [id]
+    pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+        res.sendStatus(201)
+    }).catch((dbErr) => {
+        console.log('Error in delete', dbErr)
+    })
+    
+    
+})
+
+router.put('/:id', (req, res) => {
+    const sqlText = `
+    UPDATE feedback 
+    SET flagged = NOT flagged
+    WHERE id=$1
+    `
+    const sqlValues = [req.params.id]
+    pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+        res.sendStatus(201)
+    }).catch((dbErr) => {
+        console.log('Error in put', dbErr)
+    })
+})
 
 
 //DELETE
 module.exports = router;
+
+// router.put('/like/:id', (req, res) => {
+//     console.log('id?', req.params.id);
+//     const sqlText = `
+//     UPDATE galleryinfo SET likes = likes + 1
+//       Where id=$1
+//     `
+//     const sqlValues = [req.params.id]
+//     pool.query(sqlText, sqlValues)
+//     .then((dbRes) => {
+//         res.sendStatus(200)
+//     })
+//     .catch((dbErr) => {
+//         console.log('SQL failed in PUT: ', dbErr)
+//         res.sendStatus(500)
+//     })
+    
+// }); 

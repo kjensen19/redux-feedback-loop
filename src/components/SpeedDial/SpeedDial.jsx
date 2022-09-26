@@ -37,7 +37,7 @@ export default function BasicMenu( {colorMode, setColorMode} ) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem><ButtonBar colorMode={colorMode} setColorMode={setColorMode}/></MenuItem>
+        <MenuItem onClick={handleClose}><ButtonBar colorMode={colorMode} setColorMode={setColorMode} /></MenuItem>
       </Menu>
     </div>
   );

@@ -141,8 +141,10 @@ function ReviewCard() {
             </Alert>
           </Snackbar>
         <Button variant="outlined" color="inherit" size='large' onClick={handleClickOpen} fullWidth>
-            
-            Review Answers
+          Review Answers
+        </Button>
+        <Button variant="outlined" color="inherit" size='large' onClick={() => dispatch({type:'PREVIOUS_PAGE'})} fullWidth>
+          Go Back
         </Button>
         <BootstrapDialog
             onClose={handleClose}
@@ -171,7 +173,8 @@ function ReviewCard() {
                 </Typography>
             </DialogContent>
             <DialogActions>
-            <Button autoFocus onClick={handleSubmit}>
+            <Button variant="outlined" color="inherit" onClick={() => dispatch({type:'PREVIOUS_PAGE'})}>Go Back</Button>
+            <Button variant="outlined" color="inherit" autoFocus onClick={handleSubmit}>
                 Submit Form
             </Button>
             </DialogActions>
