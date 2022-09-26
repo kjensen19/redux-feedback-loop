@@ -3,26 +3,19 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Paper } from '@mui/material';
 import RatingScale from '../RatingScale/RatingScale';
 import AccordDrawer from '../AccordDrawer/AccordDrawer';
 import { useSelector } from 'react-redux';
-import ReviewCard from '../ReviewCard/ReviewCard';
 
-
-//TODO Add on click to collect rating (currentQuestion + rating to store object)
-
-
-
-
-
- function CardFrame() {
+function CardFrame() {
+  //access question info
   const currentQuestion = useSelector(store => store.currentQuestion)
   const questions = useSelector(store => store.questionBank)
-  console.log(questions)
-  let card =<></>
+
+  //Set card based on point in survey (questions)
+  let card = <></>
   
   if (currentQuestion < 4){
     card = (
@@ -44,6 +37,7 @@ import ReviewCard from '../ReviewCard/ReviewCard';
       </React.Fragment>
     );
   }
+  //comment question (no rating)
   else {
     card = (
       <React.Fragment>
