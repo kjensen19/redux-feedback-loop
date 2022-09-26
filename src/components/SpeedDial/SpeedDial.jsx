@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import ButtonBar from '../ButtonBar/ButtonBar';
 
+//Menu to hold button bar at the top
 export default function BasicMenu( {colorMode, setColorMode} ) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);

@@ -2,37 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../pool');
 
-// router.get('/', (req, res) => {
-//     console.log('GET /api/pizza');
-//     pool.query('SELECT * from "pizza";').then((result) => {
-//         res.send(result.rows);
-//     }).catch((error) => {
-//         console.log('Error GET /api/pizza', error)
-//         res.sendStatus(500);
-//     });
-// })
-
-//GET
-
-
-// router.put('/like/:id', (req, res) => {
-//     console.log('id?', req.params.id);
-//     const sqlText = `
-//     UPDATE galleryinfo SET likes = likes + 1
-//       Where id=$1
-//     `
-//     const sqlValues = [req.params.id]
-//     pool.query(sqlText, sqlValues)
-//     .then((dbRes) => {
-//         res.sendStatus(200)
-//     })
-//     .catch((dbErr) => {
-//         console.log('SQL failed in PUT: ', dbErr)
-//         res.sendStatus(500)
-//     })
-    
-// }); 
-
 //POST
 router.post('/', (req, res) => {
     const sqlText = `
@@ -49,6 +18,7 @@ router.post('/', (req, res) => {
     })
 })
 
+//GET
 router.get('/', (req, res) => {
     const sqlText = `
     SELECT * FROM feedback
@@ -78,10 +48,9 @@ router.delete('/:id', (req, res) => {
     }).catch((dbErr) => {
         console.log('Error in delete', dbErr)
     })
-    
-    
 })
 
+//PUT
 router.put('/:id', (req, res) => {
     const sqlText = `
     UPDATE feedback 
@@ -98,23 +67,5 @@ router.put('/:id', (req, res) => {
 })
 
 
-//DELETE
 module.exports = router;
 
-// router.put('/like/:id', (req, res) => {
-//     console.log('id?', req.params.id);
-//     const sqlText = `
-//     UPDATE galleryinfo SET likes = likes + 1
-//       Where id=$1
-//     `
-//     const sqlValues = [req.params.id]
-//     pool.query(sqlText, sqlValues)
-//     .then((dbRes) => {
-//         res.sendStatus(200)
-//     })
-//     .catch((dbErr) => {
-//         console.log('SQL failed in PUT: ', dbErr)
-//         res.sendStatus(500)
-//     })
-    
-// }); 

@@ -15,20 +15,20 @@ function ButtonBar( {colorMode, setColorMode} ) {
 
     const history = useHistory()
     const dispatch = useDispatch()
-
+    //mode toggle conditional
     function toggleColor() {
         colorMode === 'light' ? setColorMode('dark') : setColorMode('light')
     }
-
+    //dispatch for home button
     function handleHome(){
         dispatch({type: 'CLEAR_DATA'})
         history.push('/')
     }
-
+    //info tab would go here
     function handleInfo(){
 
     }
-
+    //navigate to admin page
     function handleAdmin() {
         history.push('/admin')
     }

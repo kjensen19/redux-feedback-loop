@@ -8,12 +8,12 @@ import { useState } from 'react'
 import { Paper, Box } from '@mui/material';
 import Container from '@mui/material/Container';
 import { HashRouter as Router, Route, Link} from 'react-router-dom';
-import ButtonBar from '../ButtonBar/ButtonBar';
 import BasicMenu from '../SpeedDial/SpeedDial';
 
 
 
 function App() {
+  //state for dark/light toggle
   const [colorMode, setColorMode] = useState('dark')
   const darkTheme = createTheme({
     palette: {

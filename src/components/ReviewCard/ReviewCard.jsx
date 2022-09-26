@@ -16,6 +16,7 @@ import MuiAlert from '@mui/material/Alert';
 import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 
+//MUI set up for display
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -53,23 +54,20 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
 };
-
+//Set up for submit confirm alert
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-
-
+//Final card with review info
 function ReviewCard() {
   const history = useHistory()
   const dispatch = useDispatch()
-  // const feeling = 
   const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = useState(false);
 
-
+  //handlers for opening and closing the modal
   const handleClickOpen = () => {
-      console.log(feedbackSession)
       setOpen(true);
   };
   const handleClose = () => {
@@ -78,25 +76,16 @@ function ReviewCard() {
 
   const handleCloseAlert = (event, reason) => {
     if (reason === 'clickaway') {
-      const action = {
-        type: 'CLEAR_DATA'
-    }
+      const action = {type: 'CLEAR_DATA'}
       dispatch(action)
       history.push('/')
-      //setOpenAlert(false);
       return;
     }
-      
-      // setOpenAlert(false);
-      const action = {
-        type: 'CLEAR_DATA'
-    }
+      const action = {type: 'CLEAR_DATA'}
       dispatch(action)
       history.push('/')
     };
 
-    //Need to build object from redux store that looks like:
-    //("feeling", "understanding", "support", "comments")
     let feedbackSession = {
         feeling: useSelector(store => store.feelingAnswers.value),
         understanding: useSelector(store => store.understandingAnswers.value),
@@ -114,16 +103,8 @@ function ReviewCard() {
             method: 'POST',
             url: '/feedback',
             data: feedbackSession
-        }).then((response) => {
-            
-            console.log('openAlert=', openAlert)
-            console.log('POST complete')
-            
-            //need to call clear dispatch
-            // const action = {
-            //     type: 'CLEAR_DATA'
-            // }
-            // dispatch(action)
+        }).then((response) => {    
+          //open snackbar alert        
             setOpenAlert(true)
         }).catch((error) => {
             console.log('CS POST ERROR', error)

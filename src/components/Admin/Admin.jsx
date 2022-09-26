@@ -15,32 +15,27 @@ import Button from '@mui/material/Button';
 
 
 export default function BasicTable() {
-    useEffect(() => {
-        fetchFeedback();
+    //Fetch DB info on page load
+  useEffect(() => {
+      fetchFeedback();
     }, [])
+    //state for db info (to trigger reRender)
     const [adminData, setAdminData] = useState([])
-
+    //GET
     const fetchFeedback = () => {
         axios({
             method: 'GET',
             url: '/feedback'
         })
         .then(response => {
-            // for (let row of response){
-            //     rows.append(createData(row))
-            // }
             console.log(response.data.rows)
-            // for (let row of response.data.rows){
-            //     rows.push(row)
-                setAdminData(response.data.rows)
-            // }
-            // rows = createData(response.data.rows)
+            setAdminData(response.data.rows)
             console.log(adminData)
         }).catch( error => {
             console.log('ERROR IN GET', error)
         }) 
     }
-
+    //PUT
     const flagFeedback = (id) => {
       console.log('ID in flag', id)
       axios({
@@ -52,7 +47,7 @@ export default function BasicTable() {
         console.log('PUT failed', error)
       })
     }
-
+    //DEL
     const delFeedback = (id) => {
       console.log('ID in DEL', id)
       axios({
@@ -64,7 +59,7 @@ export default function BasicTable() {
         console.log('DEL error', error)
       })
     }
-
+    //Table for feedback data with buttons for flagging and deleting
   return (
     <TableContainer component={Paper}>
       <Table sx={{ width: 1, height: .9}} aria-label="simple table">
@@ -103,4 +98,3 @@ export default function BasicTable() {
     </TableContainer>
   )
 }
-// }id, feeling, understanding, support, comments, flagged, date

@@ -8,9 +8,6 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
-
-
-
 //reducers here
 const questionBank = (state = [{0 : 'Home'}, {1 : 'How are you feeling today?'}, {2 : 'How well are you understanding the content?'}, {3: "How well are you being supported?"}, {4: 'Any comments you want to leave?'}], action) => {
     return state

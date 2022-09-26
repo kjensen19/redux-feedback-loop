@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux'
 import ReviewCard from '../ReviewCard/ReviewCard';
 import Stack from '@mui/material/Stack';
 
- function TextInput() {
+function TextInput() {
+  //Comment text handlers
   const dispatch = useDispatch()
   const [value, setValue] = React.useState('');
 

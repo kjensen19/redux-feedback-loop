@@ -4,12 +4,13 @@ import { Paper } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 
 
-function Header({setColorMode, colorMode}) {
+function Header() {
     const history = useHistory()
+    //Start button
     function startSurvey() {
       history.push('/feedback')
     }
-
+    //Landing page
     return(
         <Paper elevation={12} >
             <header className='App-header'>

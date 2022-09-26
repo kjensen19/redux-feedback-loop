@@ -3,12 +3,11 @@ import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 import Button from '@mui/material/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import MissingAlert from '../MissingAlert/MissingAlert';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 
-
+//Labels for rating values
 const labels = {
   0.5: 'Awful',
   1: 'Awful+',
@@ -28,16 +27,13 @@ function getLabelText(value) {
 
 function RatingScale({ currentQuestion }) {
 
-
+  //State for rating scale
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
   const history = useHistory()
   const dispatch = useDispatch()
-
-  //button logic: first question- both, 2nd- both, 3rd-both, 4th-just back
-
+  //Handle back button click
   const handleBack = () => {
-    console.log('Go back where???')
     if (currentQuestion === 1){
       dispatch({type: 'CLEAR_ALL'})
       history.push('/')
@@ -47,7 +43,7 @@ function RatingScale({ currentQuestion }) {
     }
   }
 
-
+  //Submit value to store
   const handleSubmit = () => {
     console.log('Go next')
     console.log(`value=${value}`)
