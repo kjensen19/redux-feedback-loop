@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
-
+import MissingAlert from '../MissingAlert/MissingAlert';
 //Labels for rating values
 const labels = {
   0.5: 'Awful',
@@ -24,6 +24,10 @@ const labels = {
 function getLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
 }
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MissingAlert />;
+});
 
 function RatingScale({ currentQuestion }) {
 

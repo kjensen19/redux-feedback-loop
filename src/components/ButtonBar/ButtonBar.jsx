@@ -5,7 +5,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import Stack from '@mui/material/Stack';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import { Paper } from '@mui/material';
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
