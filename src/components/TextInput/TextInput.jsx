@@ -47,7 +47,7 @@ function TextInput() {
           name={value}
           value={value}
           onChange={handleChange}
-          color="secondary"
+          color='success'
         />
         <Button onClick={handleSubmit} size="medium" variant="outlined" color="inherit">Add Comment</Button>
         <ReviewCard />
